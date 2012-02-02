@@ -1,3 +1,5 @@
+var promiseTimer;
+
 function timerFinished() {
     var deferred = jQuery.Deferred(),
         interval, count = 6;
@@ -16,14 +18,14 @@ function timerFinished() {
     return deferred.promise();
 }
 
-var y = jQuery
-    .when(timerFinished())
-    .then(function(){
-        jQuery('.timer-status').text('Timer finished.')
-        jQuery('example-2')
-            .removeClass('unresolved rejected')
-            .addClass('resolved');
-    })
-    .promise();
+promiseTimer = jQuery
+                .when(timerFinished())
+                .then(function(){
+                    jQuery('.timer-status').text('Timer finished.')
+                    jQuery('example-2')
+                        .removeClass('unresolved rejected')
+                        .addClass('resolved');
+                })
+                .promise();
 
-promises.push(y);
+promises.push(promiseTimer);

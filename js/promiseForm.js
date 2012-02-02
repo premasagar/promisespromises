@@ -1,4 +1,5 @@
-var numbersEntered = jQuery.when(numberEntered(0), numberEntered(1));
+var numbersEntered = jQuery.when(numberEntered(0), numberEntered(1)),
+    promiseForm;
 
 function numberEntered(elIndex) {
     var deferred = jQuery.Deferred();
@@ -16,14 +17,17 @@ function buttonPressed() {
     return deferred.promise();
 }
 
-var x = jQuery
-    .when(numbersEntered, buttonPressed())
-    .then(function(){
-        jQuery('.example-1 input').eq(2).val(
-            parseInt( jQuery('.example-1 input')[0].value ) +
-            parseInt( jQuery('.example-1 input')[1].value )
-        )
-    })
-    .promise();
+promiseForm = jQuery
+                .when(numbersEntered, buttonPressed())
+                .then(function(){
+                    jQuery('example-2')
+                        .removeClass('unresolved rejected')
+                        .addClass('resolved');
+                    jQuery('.example-1 input').eq(2).val(
+                        parseInt( jQuery('.example-1 input')[0].value ) +
+                        parseInt( jQuery('.example-1 input')[1].value )
+                    )
+                })
+                .promise();
 
-promises.push(x);
+promises.push(promiseForm);
