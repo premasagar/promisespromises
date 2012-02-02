@@ -22,7 +22,7 @@ promiseTimer = jQuery
                 .when(timerFinished())
                 .then(function(){
                     jQuery('.timer-status').text('Timer finished.')
-                    jQuery('.example-2')
+                    jQuery('.example-1')
                         .removeClass('unresolved rejected')
                         .addClass('resolved');
                 })
