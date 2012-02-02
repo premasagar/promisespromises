@@ -20,13 +20,13 @@ function buttonPressed() {
 promiseForm = jQuery
                 .when(numbersEntered, buttonPressed())
                 .then(function(){
-                    jQuery('example-2')
-                        .removeClass('unresolved rejected')
-                        .addClass('resolved');
                     jQuery('.example-1 input').eq(2).val(
                         parseInt( jQuery('.example-1 input')[0].value ) +
                         parseInt( jQuery('.example-1 input')[1].value )
-                    )
+                    );
+                    jQuery('.example-2')
+                        .removeClass('unresolved rejected')
+                        .addClass('resolved');
                 })
                 .promise();
 
