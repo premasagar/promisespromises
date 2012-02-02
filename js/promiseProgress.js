@@ -1,7 +1,8 @@
-// Master promise container
+// Master promise
+
 var promises = [];
 
-jQuery.apply.when(x, y)
-	.then(function(){
-		console.log("all done!");
-	})
+jQuery.when.apply(jQuery, promises)
+    .then(function(){
+        console.log("all done!");
+    });
