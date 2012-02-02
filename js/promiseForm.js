@@ -24,7 +24,7 @@ promiseForm = jQuery
                         parseInt( jQuery('.example-1 input')[0].value ) +
                         parseInt( jQuery('.example-1 input')[1].value )
                     );
-                    jQuery('.example-2')
+                    jQuery('.example-1')
                         .removeClass('unresolved rejected')
                         .addClass('resolved');
                 })
