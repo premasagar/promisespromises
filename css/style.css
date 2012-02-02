@@ -1,0 +1,17 @@
+#dashboard section{
+    float:left;
+    padding: 1em;
+    margin: 1em;
+}
+
+.unresolved {
+    background: #EBF57A;
+}
+
+.resolved {
+    background: #7AF591;
+}
+
+.rejected {
+    background: #F57A7A;
+}
