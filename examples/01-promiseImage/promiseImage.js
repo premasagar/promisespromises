@@ -22,5 +22,6 @@ function promiseImage(src){
 }
 
 jQuery('button').click(function(){
-    promiseImage('foo.jpg').then(show, error);
+    var src = 'http://farm6.staticflickr.com/5057/5470765620_5da909055a_m.jpg';
+    promiseImage(src).then(show, error);
 });
