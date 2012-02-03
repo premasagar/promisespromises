@@ -3,7 +3,7 @@ function show(img) {
 }
 
 function error(img) {
-    jQuery('.output').text('Error loading image');
+    jQuery('.output').append('Error loading image');
 }
 
 function promiseImage(src){
