@@ -1,7 +1,7 @@
 # Promise libraries #
 
 - [q](https://github.com/kriskowal/q) (Promise library for JavaScript) 
-- [q with jQuery)](https://github.com/kriskowal/q/wiki/jQuery) (Using q and jQuery together)
+- [q with jQuery](https://github.com/kriskowal/q/wiki/jQuery) (Using q and jQuery together)
 - [when.js](https://github.com/briancavalier/when.js) (Another promise JavaScript library)  
 - [node-promise](https://github.com/kriszyp/node-promise) (Promise library for Node)  
 - [futures](https://github.com/coolaj86/futures) (Flow control library which offers promise functionality)  
