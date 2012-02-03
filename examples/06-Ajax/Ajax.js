@@ -27,7 +27,7 @@ function error(img) {
 }
 
 function getLanyrdAttendees() {
-  var url = 'http://api-v1.lanyrd.net/2011/asyncjs-security/attendees/',
+  var url = 'http://lanyrd.asyncjs.com/2011/asyncjs-security/attendees/',
       images = [];
 
     jQuery.getJSON(url + "?callback=?")

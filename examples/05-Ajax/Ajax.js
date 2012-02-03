@@ -3,7 +3,7 @@ function display(amount) {
 }
 
 jQuery('button').click(function(){
-  var url = 'http://api-v1.lanyrd.net/2011/asyncjs-security/attendees/';
+  var url = 'http://lanyrd.asyncjs.com/2011/asyncjs-security/attendees/';
 
   jQuery.getJSON(url + "?callback=?")
       .then(function(data){
