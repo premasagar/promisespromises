@@ -17,6 +17,7 @@ function promiseImage(src){
 function display(/* each image node is passed in as an argument */) {
     jQuery(arguments)
         .hide()
+        .css('padding','20px')
         .appendTo('.output')
         .fadeIn();
 }
