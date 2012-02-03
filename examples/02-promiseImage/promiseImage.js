@@ -14,11 +14,8 @@ function promiseImage(src){
     return deferred.promise();
 }
 
-function display(img1, img2, img3, img4) {
-    jQuery(img1)
-        .add(img2)
-        .add(img3)
-        .add(img4)
+function display(/* each image node is passed in as an argument */) {
+    jQuery(arguments)
         .hide()
         .appendTo('.output')
         .fadeIn();
