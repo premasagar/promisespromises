@@ -27,7 +27,7 @@ function error(img) {
 }
 
 jQuery('button').click(function(){
-    var promiseImage1 = promiseImage('x.jpg'),
+    var promiseImage1 = promiseImage('foo.jpg'),
         promiseImage2 = promiseImage('bar.jpg');
 
     jQuery.when(promiseImage1, promiseImage2)
