@@ -17,12 +17,12 @@
       background: white url(images/async-logo.png) 50% 50% no-repeat;
     }
     
-	/*
+  /*
     section.slides.template-async > article:not(.nobackground):not(.biglogo) {
       background: url(images/async-logo-small.png) 820px 625px no-repeat;
       background-color: white;  
     }
-	*/
+  */
     
     p.smaller {
       font-size: 20px;
@@ -33,11 +33,11 @@
     .spacious {
       margin-top:64px;
     }
-	
-	article pre {
-		max-height:560px;
-		overflow:scroll;
-	}
+  
+  article pre {
+    max-height:560px;
+    overflow:scroll;
+  }
     </style>
   </head>
 
@@ -52,16 +52,23 @@
           Promises, Promises
         </h1>
         <p>
-          Premasagar Rose, Dharmafly
+          Premasagar Rose, <a href="https://twitter.com/premasagar">@premasagar</a>, Dharmafly
+      <br>
+      Aaron Acerboni, <a href="https://twitter.com/aaronacerboni">@aaronacerboni</a>, School of Life
         </p>
         
         <p class='smaller spacious'>
           <strong><a href="http://asyncjs.com/promises/">Async</a></strong> – 9th February, 2012
+
+      <br>  
+      <strong>Slides</strong> – <a href="http://dharmafly.com/talks/promisespromises/">dharmafly.com/talks/promisespromises/</a>
+          
           <br>
-          <strong>Slides</strong> – <a href="https://github.com/premasagar/promises-slides">github.com/premasagar/promises-slides</a>
-        
+      <strong>Repo for demos and slides</strong> – <a href="https://github.com/premasagar/promisespromises">github.com/premasagar/promisespromises</a>
+    
+    
           <br>
-          <strong>☄</strong> – <a href="https://twitter.com/premasagar">@premasagar</a> ╱ <a href="http://premasagar.com">premasagar.com</a> ╱ <a href="http://dharmafly.com">dharmafly.com</a>
+          <strong>☄</strong> – <a href="http://premasagar.com">premasagar.com</a> ╱ <a href="http://halfmelt.com">halfmelt.com</a>
         </p>
       </article>
       
@@ -73,29 +80,28 @@
         <p>Make a request...</p>
         <p>... wait... (get on with something else)...</p>
         <p>... get a response.</p>
-		<p>Do something with the response.</p>
+    <p>Do something with the response.</p>
       </article>
       
       <article>
         <h3>
           Ajax, a quick recap
         </h3>
-<pre>
-var url = "http://asyncjs.com",
+<pre class='build'><span>var url = "http://asyncjs.com",
     xhr = new XMLHttpRequest();
-
-xhr.open("GET", url, true);
+</span><span>
+xhr.open("GET", url, true);</span><span>
 xhr.onreadystatechange = function(event){
-  if (xhr.readyState === 4) { // request complete
+  if (xhr.readyState === 4) { // request complete</span><span>
     if (xhr.status === 200) { // done
       foo(xhr.responseText);
-    }
+    }</span><span>
     else { // fail
       bar(xhr.statusText);
     }
   }  
-};
-xhr.send(null);
+};</span><span>
+xhr.send(null);</span>
 </pre>
     </article>
       
@@ -110,9 +116,9 @@ jQuery.ajax(url, {
 });
 </pre>
 
-	<p>jQuery has numerous <a href="http://api.jquery.com/category/ajax/">Ajax helper functions</a>, <code>.get()</code>, <code>.getJSON()</code>, <code>.post()</code>, etc.</p>
-	
-	<!--<p>(Spoiler: jQuery now returns <em>promises</em> from each of these methods)</p>-->
+  <p>jQuery has numerous <a href="http://api.jquery.com/category/ajax/">Ajax helper functions</a>, <code>.get()</code>, <code>.getJSON()</code>, <code>.post()</code>, etc.</p>
+  
+  <!--<p>(Spoiler: jQuery now returns <em>promises</em> from each of these methods)</p>-->
     </article>
       
       <article>
@@ -120,18 +126,18 @@ jQuery.ajax(url, {
           So far, so good
         </h2>
       </article>
-			
+      
 
       
       <article>
         <h3>
           Multiple requests, tangled mess
         </h3>
-		
-		<p>If many requests are required, e.g. to render an interface, you get <em>chaos</em>.</p>
-	  </article>
-		  
-		  
+    
+    <p>If many requests are required, e.g. to render an interface, you get <em>chaos</em>.</p>
+    </article>
+      
+      
       <article>
         <h3>
           Too tightly coupled
@@ -151,8 +157,8 @@ jQuery.ajax(url1, {
 });
 
 jQuery.ajax(url2, {
-	
-	// etc ...
+  
+  // etc ...
 
 </pre>
       </article>
@@ -162,99 +168,222 @@ jQuery.ajax(url2, {
         <h3>
           Multiple requests
         </h3>
-			
-				<ul>
-					<li>Counters outside of callbacks</li>
-					<li>Brittle code</li>
-					<li>Increasing complexity</li>
-					<li>Separate components can't subscribe to callbacks</li>
-					<li>Can't add callbacks after request is made</li>
-				</ul>
-			
-	</article>
       
-	  
-	  
+        <ul>
+          <li>Counters outside of callbacks</li>
+          <li>Brittle code</li>
+          <li>Increasing complexity</li>
+          <li>Separate modules can't subscribe to callbacks</li>
+          <li>Can't add callbacks after request is made</li>
+        </ul>
+      
+  </article>
       
       <article>
         <h2>
           The promise of Promises
         </h2>
       </article>
-	  
+    
       <!--
       <article class='smaller'>
         <h3>
           Promises
         </h3>
-		<div class='build'>
+    <div class='build'>
         <q>
-		  <span>Promises provide a <em>well-defined interface</em></span> <span class='build'><span>for interacting with an object</span> <span>that represents <em>the result of an action</em></span> <span>that is performed asynchronously.</span></span>
+      <span>Promises provide a <em>well-defined interface</em></span> <span class='build'><span>for interacting with an object</span> <span>that represents <em>the result of an action</em></span> <span>that is performed asynchronously.</span></span>
         </q>
-		</div>
-		
+    </div>
+    
         <div class='author'>
           <a href='http://wiki.commonjs.org/wiki/Promises'>wiki.commonjs.org/wiki/Promises</a>
         </div>
       </article>
-	  -->
-	  
+    -->
+    
       <article>
         <h3>
           Promises
         </h3>
-		
-		<div class='build'>
-		
-			<p style='margin-top:48px;'>An object that can be interacted with, while waiting for the result of an action.</p>
-		
-			<p>May be in one of the 3 states:</p>
-			<ul>
-				<li>unfulfilled</li>
-				<li>fulfilled</li>
-				<li>failed</li>
-			</ul>
-				<p>The promise may only move from <em>unfulfilled to fulfilled</em>
-				<br>or <em>unfulfilled to failed</em>.</p>
-			
-		</div>
+    
+    <div class='build'>
+    
+      <p style='margin-top:48px;'>An object that can be interacted with, while waiting for the result of an action.</p>
+    
+      <p>May be in one of the 3 states:</p>
+      <ul>
+        <li>unfulfilled</li>
+        <li>fulfilled</li>
+        <li>failed</li>
+      </ul>
+        <p>The promise may only move from <em>unfulfilled to fulfilled</em>
+        <br>or <em>unfulfilled to failed</em>.</p>
+      
+    </div>
       </article>
-	  
-		
-	<!-- Inspired by Dojo's "Deferred", which inherited from MochiKit and Python's Twisted -->
-	
-		
+    
+    
+  <!-- Inspired by Dojo's "Deferred", which inherited from MochiKit and Python's Twisted -->
+  
+    
       <article>
         <h3><code>then</code> method</h3>
-		
-		<!--
-		<p>jQuery's <a href="http://api.jquery.com/category/deferred-object/">Deferred</a> is based on CommonJS's <a href="http://wiki.commonjs.org/wiki/Promises/A">Promises/A</a> pattern.</p>
-		-->
-			
+    
+    <!--
+    <p>jQuery's <a href="http://api.jquery.com/category/deferred-object/">Deferred</a> is based on CommonJS's <a href="http://wiki.commonjs.org/wiki/Promises/A">Promises/A</a> pattern.</p>
+    -->
+      
 <pre>
 then(fulfilledHandler, errorHandler, progressHandler);
 </pre>
 
-	<ul>
-		<li>All arguments optional</li>
-		<li><strong>fulfilledHandler</strong> - called when the promise is fulfilled</li>
-		<li><strong>errorHandler</strong> - called if the promise fails</li>
-		<li><strong>progressHandler</strong> - may be called as promise progresses</li>
-		<li>The <code>then</code> function returns a <em>new promise</em>, to allow chaining.</li>
-	</ul>
+  <ul class='build'>
+    <li>All arguments optional</li>
+    <li><strong>fulfilledHandler</strong> - called when the promise is fulfilled</li>
+    <li><strong>errorHandler</strong> - called if the promise fails</li>
+    <li><strong>progressHandler</strong> - may be called as promise progresses</li>
+    <li>The <code>then</code> function returns a <em>new promise</em>, to allow chaining.</li>
+  </ul>
       </article>
       
-      <!--
-	  jQuery.then
-	  jQuery's Ajax calls return promises
-	  (also animation functions)
-	  jQuery when
-	  
-	  demos...
-	  
-	  libraries
-	  -->
+      <article>
+        <h3>jQuery's Ajax methods now return promises</h3>
+    
+<pre>
+var promise = jQuery.get(url);
+
+promise
+  .then(doneCallback1, errorCallback1)
+  .then(doneCallback2, errorCallback2)
+  .then(doneCallback3, errorCallback3);
+</pre>
+
+<p>You can use them with jQuery's <em>animation</em> too (see later, in the demos).</p> 
+    </article>
+    
+
+      
+          <article>
+            <h3>Make a Promise</h3>
+    
+          <p><code>jQuery.Deferred()</code> creates <em>deferreds</em> - a superset of promises that control the promise state.</p>
+    
+<pre class='build'><span>// Create deferred
+var deferred = jQuery.Deferred(),
+    promise = deferred.promise();
+</span><span>
+// App modules subscribe to the promise
+promise
+  .then(fn)
+  .then(fn);
+</span><span>
+// ...later, the deferred completes
+if (foo){
+  deferred.resolve();
+}
+else {
+  deferred.reject();
+}</span>
+</pre>
+        </article>
+      
+    
+
+    
+                    <article>
+                      <h3>Report progress</h3>
+    
+                    <p>You can also notify a promise of progress.</p>
+      
+            
+<pre class='build'><span>var deferred = jQuery.Deferred(),
+    promise = deferred.promise();
+</span><span>
+promise.progress(function(colour){
+  console.log(colour);
+});
+</span><span>
+deferred
+  .notify("red")
+  .notify("green")
+  .notify("blue");
+</span><span>
+deferred.resolve();</span>
+</pre>
+                  </article>
+
+    
+  
+      
+                <article>
+                  <h3><code>jQuery.when</code> pools multiple promises</h3>
+    
+                <p>Pool multiple promises together, return a single, master promise.</p>
+        
+<pre>
+var deferred1 = jQuery.Deferred(),
+    deferred2 = jQuery.Deferred(),
+    deferred3 = jQuery.Deferred();
+
+// Pass deferreds or promises to jQuery.when
+var masterPromise = jQuery.when(deferred1, deferred2, deferred3);
+
+masterPromise
+  .then(foo)
+  .then(bar);
+  // etc
+</pre>
+              </article>
+
+      
+    
+  
+      
+                    <article>
+                      <h3><code>jQuery.when</code></h3>
+          
+      <div class='build' style='margin-top:48px;'>
+                <p>If all promises resolve, the master resolves.</p>
+            <p>If one promise fails, the master fails.</p>
+            <p>Progress notifications on the promises bubble up to the master.</p>
+            </div>
+                  </article>
+    
+    
+      
+                <article>
+                  <h2>Demos ☃</h2>
+           </article>
+
+      
+          <article>
+            <h1>Thank you.</h1>
+        
+            <p>
+              Premasagar Rose, <a href="https://twitter.com/premasagar">@premasagar</a>, Dharmafly
+          <br>
+          Aaron Acerboni, <a href="https://twitter.com/aaronacerboni">@aaronacerboni</a>, School of Life
+            </p>
+        
+            <p class='smaller spacious'>
+              <strong><a href="http://asyncjs.com/promises/">Async</a></strong> – 9th February, 2012
+
+          <br>  
+          <strong>Slides</strong> – <a href="http://dharmafly.com/talks/promisespromises/">dharmafly.com/talks/promisespromises/</a>
+          
+              <br>
+          <strong>Repo for demos and slides</strong> – <a href="https://github.com/premasagar/promisespromises">github.com/premasagar/promisespromises</a>
+    
+    
+              <br>
+              <strong>☄</strong> – <a href="http://premasagar.com">premasagar.com</a> ╱ <a href="http://halfmelt.com">halfmelt.com</a>
+        
+     </article>
+      
     </section>
+
+
 
   </body>
 </html>
