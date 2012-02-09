@@ -1,0 +1,3 @@
+http://api.jquery.com/promise/
+
+last example
