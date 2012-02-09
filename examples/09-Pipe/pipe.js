@@ -2,8 +2,8 @@ var api = 'https://search.twitter.com/search.json',
     request, chain;
 
 function nextPage(data){
-    for (var i = 0; i < results.length; i++) {
-        jQuery('body').append('<p>' + results[i].text + '</p>');
+    for (var i = 0; i < data.results.length; i++) {
+        jQuery('body').append('<p>' + data.results[i].text + '</p>');
     }
     if(data.next_page){
         jQuery.getJSON(api + data.next_page + '&callback=?')
