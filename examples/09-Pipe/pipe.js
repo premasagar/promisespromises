@@ -1,4 +1,4 @@
-var api = 'http://search.twitter.com/search.json',
+var api = 'https://search.twitter.com/search.json',
     request, chain;
 
 function nextPage(data){
@@ -6,15 +6,15 @@ function nextPage(data){
         jQuery('body').append('<p>' + results[i].text + '</p>');
     }
     if(data.next_page){
-        jQuery.getJSON(api + data.next_page)
+        jQuery.getJSON(api + data.next_page + '&callback=?')
             .pipe(nextPage);
     } else {
         chain.resolve();
     }
 }
 
-request = jQuery.getJSON(api + '?q=javascript')
+request = jQuery.getJSON(api + '?q=javascript&callback=?');
 chain   = request.pipe(nextPage)
             .done(function(){
-                jQuery('body').append('<p>All pages searched.</p>');
+                jQuery('body').prepend('<p>All pages searched.</p>');
             });
