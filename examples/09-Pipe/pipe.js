@@ -10,11 +10,9 @@ function nextPage(data) {
 }
 
 function displayResults(results) {
-    var html = '';
-    jQuery.each(results, function(i, data){
-        html += '<p>' + data.text + '</p>';
+    jQuery.each(results, function(i, item){
+        $body.prepend(item);
     })
-    $body.html(html);
 }
 
 function getPage(next_page) {
