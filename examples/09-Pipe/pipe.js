@@ -11,7 +11,7 @@ function nextPage(data) {
 
 function displayResults(results) {
     jQuery.each(results, function(i, item){
-        $body.prepend(item);
+        $body.prepend(item.text);
     })
 }
 
