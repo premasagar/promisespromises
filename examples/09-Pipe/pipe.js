@@ -1,16 +1,20 @@
-var j    = jQuery,
-    api  = 'http://api.twitter.com/1/',
-    name = 'aaronacerboni';
+var api = 'http://search.twitter.com/search.json',
+    request, chain;
 
-j.getJSON(api + 'users/show.json?screen_name=' + name)
-    .pipe(function(data){
+function nextPage(data){
+    for (var i = 0; i < results.length; i++) {
+        jQuery('body').append('<p>' + results[i].text + '</p>');
+    }
+    if(data.next_page){
+        jQuery.getJSON(api + data.next_page)
+            .pipe(nextPage);
+    } else {
+        chain.resolve();
+    }
+}
 
-        var tweet = data.statuses.in_reply_to_status_id_str;
-        return j.getJSON(api + 'statuses/show/' + tweet + '.json');
-
-    })
-    .done(function(data){
-
-        j('body').html(name + ' last replied to ' + data.user.name);
-
-    });
+request = jQuery.getJSON(api + '?q=javascript')
+chain   = request.pipe(nextPage)
+            .done(function(){
+                jQuery('body').append('<p>All pages searched.</p>');
+            });
