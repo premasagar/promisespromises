@@ -1,18 +1,26 @@
-var api = 'https://search.twitter.com/search.json';
+var url   = 'https://search.twitter.com/search.json',
+    query = '?q=javascript',
+    $body = jQuery('body');
 
 function nextPage(data) {
     displayResults(data.results);
     if(data.next_page){
-        jQuery.getJSON(api + data.next_page + '&callback=?')
-            .pipe(nextPage);
+        getPage(data.next_page);
     }
 }
 
 function displayResults(results) {
-    for (var i = 0; i < results.length; i++) {
-        jQuery('body').append('<p>' + results[i].text + '</p>');
-    }
+    var html = '';
+    jQuery.each(results, function(i, data){
+        html += '<p>' + data.text + '</p>';
+    })
+    $body.html(html);
 }
 
-jQuery.getJSON(api + '?q=javascript&callback=?')
-    .pipe(nextPage);
+function getPage(next_page) {
+    if(next_page) query = next_page;
+    jQuery.getJSON(url + query + '&callback=?')
+        .pipe(nextPage);
+}
+
+getPage();
