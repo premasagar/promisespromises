@@ -11,29 +11,29 @@
     <meta charset='utf-8'>
     <script
       src='slides.js'></script>
-      
+
     <style>
     section.slides.template-async article.biglogo {
       background: white url(images/async-logo.png) 50% 50% no-repeat;
     }
-    
+
   /*
     section.slides.template-async > article:not(.nobackground):not(.biglogo) {
       background: url(images/async-logo-small.png) 820px 625px no-repeat;
-      background-color: white;  
+      background-color: white;
     }
   */
-    
+
     p.smaller {
       font-size: 20px;
       line-height: 32px;
       letter-spacing: 0;
     }
-    
+
     .spacious {
       margin-top:64px;
     }
-  
+
   article pre {
     max-height:560px;
     overflow:scroll;
@@ -56,33 +56,33 @@
       <br>
       Aaron Acerboni, <a href="https://twitter.com/aaronacerboni">@aaronacerboni</a>, School of Life
         </p>
-        
+
         <p class='smaller spacious'>
           <strong><a href="http://asyncjs.com/promises/">Async</a></strong> – 9th February, 2012
 
-      <br>  
+      <br>
       <strong>Slides</strong> – <a href="http://dharmafly.com/talks/promisespromises/">dharmafly.com/talks/promisespromises/</a>
-          
+
           <br>
       <strong>Repo for demos and slides</strong> – <a href="https://github.com/premasagar/promisespromises">github.com/premasagar/promisespromises</a>
-    
-    
+
+
           <br>
           <strong>☄</strong> – <a href="http://premasagar.com">premasagar.com</a> ╱ <a href="http://halfmelt.com">halfmelt.com</a>
         </p>
       </article>
-      
+
       <article>
         <h2>
           Asynchronicity
         </h2>
-        
+
         <p>Make a request...</p>
         <p>... wait... (get on with something else)...</p>
         <p>... get a response.</p>
     <p>Do something with the response.</p>
       </article>
-      
+
       <article>
         <h3>
           Ajax, a quick recap
@@ -99,12 +99,12 @@ xhr.onreadystatechange = function(event){
     else { // fail
       bar(xhr.statusText);
     }
-  }  
+  }
 };</span><span>
 xhr.send(null);</span>
 </pre>
     </article>
-      
+
       <article>
         <h3>
           Ajax, in jQuery
@@ -117,27 +117,27 @@ jQuery.ajax(url, {
 </pre>
 
   <p>jQuery has numerous <a href="http://api.jquery.com/category/ajax/">Ajax helper functions</a>, <code>.get()</code>, <code>.getJSON()</code>, <code>.post()</code>, etc.</p>
-  
+
   <!--<p>(Spoiler: jQuery now returns <em>promises</em> from each of these methods)</p>-->
     </article>
-      
+
       <article>
         <h2>
           So far, so good
         </h2>
       </article>
-      
 
-      
+
+
       <article>
         <h3>
           Multiple requests, tangled mess
         </h3>
-    
+
     <p>If many requests are required, e.g. to render an interface, you get <em>chaos</em>.</p>
     </article>
-      
-      
+
+
       <article>
         <h3>
           Too tightly coupled
@@ -145,7 +145,7 @@ jQuery.ajax(url, {
 
 <pre>
 var counter = 0, numRequests = 10;
-    
+
 jQuery.ajax(url1, {
   success: function(data){
     counter += 1;
@@ -157,18 +157,18 @@ jQuery.ajax(url1, {
 });
 
 jQuery.ajax(url2, {
-  
+
   // etc ...
 
 </pre>
       </article>
 
-      
+
       <article>
         <h3>
           Multiple requests
         </h3>
-      
+
         <ul>
           <li>Counters outside of callbacks</li>
           <li>Brittle code</li>
@@ -176,15 +176,15 @@ jQuery.ajax(url2, {
           <li>Separate modules can't subscribe to callbacks</li>
           <li>Can't add callbacks after request is made</li>
         </ul>
-      
+
   </article>
-      
+
       <article>
         <h2>
           The promise of Promises
         </h2>
       </article>
-    
+
       <!--
       <article class='smaller'>
         <h3>
@@ -195,22 +195,22 @@ jQuery.ajax(url2, {
       <span>Promises provide a <em>well-defined interface</em></span> <span class='build'><span>for interacting with an object</span> <span>that represents <em>the result of an action</em></span> <span>that is performed asynchronously.</span></span>
         </q>
     </div>
-    
+
         <div class='author'>
           <a href='http://wiki.commonjs.org/wiki/Promises'>wiki.commonjs.org/wiki/Promises</a>
         </div>
       </article>
     -->
-    
+
       <article>
         <h3>
           Promises
         </h3>
-    
+
     <div class='build'>
-    
+
       <p style='margin-top:48px;'>An object that can be interacted with, while waiting for the result of an action.</p>
-    
+
       <p>May be in one of the 3 states:</p>
       <ul>
         <li>unfulfilled</li>
@@ -219,21 +219,21 @@ jQuery.ajax(url2, {
       </ul>
         <p>The promise may only move from <em>unfulfilled to fulfilled</em>
         <br>or <em>unfulfilled to failed</em>.</p>
-      
+
     </div>
       </article>
-    
-    
+
+
   <!-- Inspired by Dojo's "Deferred", which inherited from MochiKit and Python's Twisted -->
-  
-    
+
+
       <article>
         <h3><code>then</code> method</h3>
-    
+
     <!--
     <p>jQuery's <a href="http://api.jquery.com/category/deferred-object/">Deferred</a> is based on CommonJS's <a href="http://wiki.commonjs.org/wiki/Promises/A">Promises/A</a> pattern.</p>
     -->
-      
+
 <pre>
 then(fulfilledHandler, errorHandler, progressHandler);
 </pre>
@@ -246,10 +246,10 @@ then(fulfilledHandler, errorHandler, progressHandler);
     <li>The <code>then</code> function returns a <em>new promise</em>, to allow chaining.</li>
   </ul>
       </article>
-      
+
       <article>
         <h3>jQuery's Ajax methods now return promises</h3>
-    
+
 <pre>
 var promise = jQuery.get(url);
 
@@ -259,16 +259,16 @@ promise
   .then(doneCallback3, errorCallback3);
 </pre>
 
-<p>You can use them with jQuery's <em>animation</em> too (see later, in the demos).</p> 
+<p>You can use them with jQuery's <em>animation</em> too (see later, in the demos).</p>
     </article>
-    
 
-      
+
+
           <article>
             <h3>Make a Promise</h3>
-    
+
           <p><code>jQuery.Deferred()</code> creates <em>deferreds</em> - a superset of promises that control the promise state.</p>
-    
+
 <pre class='build'><span>// Create deferred
 var deferred = jQuery.Deferred(),
     promise = deferred.promise();
@@ -287,16 +287,16 @@ else {
 }</span>
 </pre>
         </article>
-      
-    
 
-    
+
+
+
                     <article>
                       <h3>Report progress</h3>
-    
+
                     <p>You can also notify a promise of progress.</p>
-      
-            
+
+
 <pre class='build'><span>var deferred = jQuery.Deferred(),
     promise = deferred.promise();
 </span><span>
@@ -313,14 +313,14 @@ deferred.resolve();</span>
 </pre>
                   </article>
 
-    
-  
-      
+
+
+
                 <article>
                   <h3><code>jQuery.when</code> pools multiple promises</h3>
-    
+
                 <p>Pool multiple promises together, return a single, master promise.</p>
-        
+
 <pre>
 var deferred1 = jQuery.Deferred(),
     deferred2 = jQuery.Deferred(),
@@ -336,51 +336,126 @@ masterPromise
 </pre>
               </article>
 
-      
-    
-  
-      
+
+
+
+
                     <article>
                       <h3><code>jQuery.when</code></h3>
-          
+
       <div class='build' style='margin-top:48px;'>
                 <p>If all promises resolve, the master resolves.</p>
             <p>If one promise fails, the master fails.</p>
             <p>Progress notifications on the promises bubble up to the master.</p>
             </div>
                   </article>
-    
-    
-      
+
+
                 <article>
-                  <h2>Demos ☃</h2>
+                <h2>Demos ☃</h2>
+
+                  <style>
+                    #examples {
+                      font-size: 0.8em;
+                    }
+                    #examples span {
+                      padding-left:0.8em;
+                    }
+                  </style>
+
+                  <ul id="examples">
+                    <li>
+                      Loading an image
+                      <span>
+                        <a target="_blank" href="../examples/01-promiseImage/promiseImage.html">view</a>
+                         /
+                        <a target="_blank" href="view-source:../examples/01-promiseImage/promiseImage.js">code</a>
+                      </span>
+                    </li>
+                    <li>
+                      Loading multiple images
+                      <span>
+                        <a target="_blank" href="../examples/02-promiseImage/promiseImage.html">view</a>
+                         /
+                        <a target="_blank" href="view-source:../examples/02-promiseImage/promiseImage.js">code</a>
+                    </span>
+                    <li>
+                      Reacting to a timer
+                      <span>
+                        <a target="_blank" href="../examples/03-promiseTimer/promiseTimer.html">view</a>
+                         /
+                        <a target="_blank" href="view-source:../examples/03-promiseTimer/promiseTimer.js">code</a>
+                      </span>
+                    </li>
+                    <li>
+                      Reacting to a timer &amp; image load
+                      <span>
+                        <a target="_blank" href="../examples/04-promiseImage-and-promiseTimer/promiseImage-and-promiseTimer.html">view</a>
+                         /
+                        <a target="_blank" href="view-source:../examples/04-promiseImage-and-promiseTimer/promiseImage-and-promiseTimer.js">code</a>
+                      </span>
+                    </li>
+                    <li>
+                      Using these objects for a slideshow
+                      <span>
+                        <a target="_blank" href="../examples/05-Slideshow/Slideshow.html">view</a>
+                         /
+                        <a target="_blank" href="view-source:../examples/05-Slideshow/slideshow.js">code</a>
+                      </span>
+                    </li>
+                    <li>
+                      Making an AJAX Request
+                      <span>
+                        <a target="_blank" href="../examples/06-Ajax/Ajax.html">view</a>
+                         /
+                        <a target="_blank" href="view-source:../examples/06-Ajax/Ajax.js">code</a>
+                      </span>
+                    </li>
+                    <li>
+                      Combining Ajax with our Image promise
+                      <span>
+                        <a target="_blank" href="../examples/07-Ajax/Ajax.html">view</a>
+                         /
+                        <a target="_blank" href="view-source:../examples/07-Ajax/Ajax.js">code</a>
+                      </span>
+                    </li>
+                    <li>
+                      Filtering data with <code>pipe()</code>
+                      <span>
+                        <a target="_blank" href="../examples/08-Pipe/pipe.html">view</a>
+                         /
+                        <a target="_blank" href="view-source:../examples/08-Pipe/pipe.js">code</a>
+                      </span>
+                    </li>
+                  <ul>
+
            </article>
 
-      
+
           <article>
             <h1>Thank you.</h1>
-        
+
             <p>
               Premasagar Rose, <a href="https://twitter.com/premasagar">@premasagar</a>, Dharmafly
           <br>
           Aaron Acerboni, <a href="https://twitter.com/aaronacerboni">@aaronacerboni</a>, School of Life
             </p>
-        
+
             <p class='smaller spacious'>
               <strong><a href="http://asyncjs.com/promises/">Async</a></strong> – 9th February, 2012
 
-          <br>  
+          <br>
           <strong>Slides</strong> – <a href="http://dharmafly.com/talks/promisespromises/">dharmafly.com/talks/promisespromises/</a>
-          
+
               <br>
           <strong>Repo for demos and slides</strong> – <a href="https://github.com/premasagar/promisespromises">github.com/premasagar/promisespromises</a>
-    
-    
+
+
               <br>
               <strong>☄</strong> – <a href="http://premasagar.com">premasagar.com</a> ╱ <a href="http://halfmelt.com">halfmelt.com</a>
-        
+
      </article>
-      
+
     </section>
 
 
