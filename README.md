@@ -9,6 +9,7 @@ This repo contains the slides and examples covered in the [AsyncJS talk (9 Febru
 - [futures](https://github.com/coolaj86/futures) (Flow control library which offers promise functionality)
 - [promise.io](https://github.com/kriszyp/promised-io) (Notable for file I/O)
 - [jQuery](http://api.jquery.com/category/deferred-object/) (jQuery's standard methods like Ajax return a promise)
+- [jQuery.promises](https://github.com/dharmafly/jquery.promises) (A collection of little scripts that use jQuery.Deferred for cleaner, encapsulated flow control. Feature an Image and Timer wrapper.)
 
 # Reading material #
 
