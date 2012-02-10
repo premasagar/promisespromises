@@ -1,3 +1,6 @@
+This repo contains the slides and examples covered in the [AsyncJS talk about JavaScript
+promises](http://asyncjs.com/promises/).
+
 # Promise libraries #
 
 - [q](https://github.com/kriskowal/q) (Promise library for JavaScript)
@@ -15,11 +18,6 @@
 - [Always keep your jQuery promises](http://www.ryanmwright.com/2011/09/06/always-keep-your-jquery-promises/) by Ryan M Wright
 - [jQuery promises](http://taraxe.wordpress.com/2011/12/13/jquery-promises/) by Taraxe
 - [Promises A](http://wiki.commonjs.org/wiki/Promises/A) (The commonjs proposal for promises)
-
-# About #
-
-This repo contains the slides and examples covered in the [AsyncJS talk about JavaScript
-promises](http://asyncjs.com/promises/).
 
 # Credits #
 
