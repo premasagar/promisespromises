@@ -5,13 +5,19 @@
         <link href="../style.css" rel="stylesheet"/>
     </head>
     <body>
-    	<style>
-    		.output img{
-    			padding: 20px;
-    		}
-    	</style>
+        <style>
+            .output img{
+                padding: 20px;
+            }
+        </style>
         <h1>How many people tonight?</h1>
-        <button>Get attendees</button>
+        <p>
+            Requesting the <a href="http://lanyrd.com/2012/asyncjs-promises/">lanyrd attendees for this talk</a>.
+        </p>
+        <p>
+            The request we are making is <code>http://lanyrd.asyncjs.com/2011/asyncjs-security/attendees/</code>.
+        </p>
+        <button>Get attendees.</button>
         <div class="output"></div>
 
         <script src="../jquery-1.7.1.min.js"></script>
