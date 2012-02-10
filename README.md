@@ -1,17 +1,27 @@
 # Promise libraries #
 
-- [q](https://github.com/kriskowal/q) (Promise library for JavaScript) 
+- [q](https://github.com/kriskowal/q) (Promise library for JavaScript)
 - [q with jQuery](https://github.com/kriskowal/q/wiki/jQuery) (Using q and jQuery together)
-- [when.js](https://github.com/briancavalier/when.js) (Another promise JavaScript library)  
-- [node-promise](https://github.com/kriszyp/node-promise) (Promise library for Node)  
-- [futures](https://github.com/coolaj86/futures) (Flow control library which offers promise functionality)  
-- [promise.io](https://github.com/kriszyp/promised-io) (Notable for file I/O)  
-- [jQuery](http://api.jquery.com/category/deferred-object/) (jQuery's standard methods like Ajax return a promise)  
+- [when.js](https://github.com/briancavalier/when.js) (Another promise JavaScript library)
+- [node-promise](https://github.com/kriszyp/node-promise) (Promise library for Node)
+- [futures](https://github.com/coolaj86/futures) (Flow control library which offers promise functionality)
+- [promise.io](https://github.com/kriszyp/promised-io) (Notable for file I/O)
+- [jQuery](http://api.jquery.com/category/deferred-object/) (jQuery's standard methods like Ajax return a promise)
 
 # Reading material #
 
 - [Digging into Deferred](http://addyosmani.com/blog/digging-into-deferreds-1/) by Addy Osmani (Short video)
-- [Creating Responsive Applications Using jQuery Deferred and Promises](http://msdn.microsoft.com/en-us/scriptjunkie/gg723713.aspx) by Julian Aubourg, Addy Osmani  
-- [Always keep your jQuery promises](http://www.ryanmwright.com/2011/09/06/always-keep-your-jquery-promises/) by Ryan M Wright    
+- [Creating Responsive Applications Using jQuery Deferred and Promises](http://msdn.microsoft.com/en-us/scriptjunkie/gg723713.aspx) by Julian Aubourg, Addy Osmani
+- [Always keep your jQuery promises](http://www.ryanmwright.com/2011/09/06/always-keep-your-jquery-promises/) by Ryan M Wright
 - [jQuery promises](http://taraxe.wordpress.com/2011/12/13/jquery-promises/) by Taraxe
 - [Promises A](http://wiki.commonjs.org/wiki/Promises/A) (The commonjs proposal for promises)
+
+# About #
+
+This repo contains the slides and examples covered in the [AsyncJS talk about JavaScript
+promises](http://asyncjs.com/promises/).
+
+# Credits #
+
+- by [Premasagar Rose](http://premasagar.com) ([Dharmafly](http://dharmafly.com))
+- and Aaron Acerboni ([Halfmelt](http://halfmelt.com))
