@@ -1,26 +1,41 @@
-var url   = 'https://search.twitter.com/search.json',
-    query = '?q=javascript',
+var url   = 'https://search.twitter.com/search.json?callback=?&',
+    query = 'q=javascript',
 	$body = jQuery('body'),
     $container = jQuery('.output');
 
-function nextPage(data) {
-    displayResults(data.results);
-    if(data.next_page){
-        getPage(data.next_page);
-    }
+getTwitterSearch(onlyReplies); // or getTwitterSearch(noReplies);
+
+function getTwitterSearch(filter) {
+    return jQuery.getJSON(url + query)
+                 .pipe(filter)
+                 .then(displayResults);
 }
 
-function displayResults(results) {
-    jQuery.each(results, function(i, item){
+function displayResults(data) {
+    jQuery.each(data.results, function(i, item){
         $container.append('<li>' + item.text + '</li>');
         $body.scrollTop($body.height());
     })
 }
 
-function getPage(next_page) {
-    if(next_page) query = next_page;
-    jQuery.getJSON(url + query + '&callback=?')
-        .pipe(nextPage);
+// Filters for twitter data
+
+// Filtering out tweets which don't have '@' characters
+function onlyReplies(data) {
+    for (var i = 0; i < data.results.length; i++) {
+        if(data.results[i].text.search('@') == -1){
+            data.results.splice(i,1);
+        }
+    }
+    return data;
 }
 
-getPage();
+// Filtering out tweets which have '@' characters
+function noReplies(data) {
+    for (var i = 0; i < data.results.length; i++) {
+        if(data.results[i].text.search('@') > 0){
+            data.results.splice(i,1);
+        }
+    }
+    return data;
+}
