@@ -1,5 +1,4 @@
-This repo contains the slides and examples covered in the [AsyncJS talk about JavaScript
-promises](http://asyncjs.com/promises/).
+This repo contains the slides and examples covered in the [AsyncJS talk (3 February, 2012)](http://asyncjs.com/promises/) about JavaScript promises.
 
 # Promise libraries #
 
