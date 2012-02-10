@@ -1,7 +1,7 @@
 var url   = 'https://search.twitter.com/search.json',
     query = '?q=javascript',
 	$body = jQuery('body'),
-    $container = jQuery('ol#container');
+    $container = jQuery('.output');
 
 function nextPage(data) {
     displayResults(data.results);
