@@ -38,19 +38,25 @@
     max-height:560px;
     overflow:auto;
   }
+
+  img.logo {
+    position:absolute;
+    top:20px;
+    right:20px;
+  }
+
     </style>
   </head>
 
   <body style='display: none'><!-- TODO: make non-JS friendly -->
 
     <section class='slides layout-regular template-async'>
-      <article class='biglogo'>
-      </article>
 
       <article>
         <h1>
           Promises, Promises
         </h1>
+        <img width="160" height="147" class="logo" src="slides/images/async-logo.png"/>
         <p>
           Premasagar Rose, <a href="https://twitter.com/premasagar">@premasagar</a>, Dharmafly
       <br>
@@ -69,6 +75,9 @@
 
           <br>
           <strong>☄</strong> – <a href="http://premasagar.com">premasagar.com</a> ╱ <a href="http://halfmelt.com">halfmelt.com</a>
+          <br>
+          <br>
+          <small>Use the <b>arrow keys</b> or <b>space</b> on your keyboard to navigate &rarr;</small>
         </p>
       </article>
 
@@ -429,22 +438,78 @@ masterPromise
                   <ul>
 
            </article>
-<!--
-          <article id="resources">
-            <h2>Resources<h2>
-            <h3>Libraries<h3>
-              <ul>
-                <li>
-                  <a href="https://github.com/dharmafly/jquery.promises">jQuery.promises</a>
-                </li>
-                <li>bar</li>
-              </ul>
-            <h3>Reading<h3>
-              <ul>
-                <li>foo</li>
-                <li>bar</li>
-              </ul>
-          </article> -->
+
+            <article class="smaller">
+                <h3>Libraries</h3>
+                <ul>
+                  <li>
+                    <a href="https://github.com/dharmafly/jquery.promises">jQuery.promises</a>
+                     <br>
+                     <small>Scripts that use jQuery.Deferred for cleaner, encapsulated flow control.</small>
+                  </li>
+                  <li>
+                    <a href="https://github.com/kriskowal/q">q</a>
+                     <br>
+                     <small>Promise library for JavaScript</small>
+                  </li>
+                  <li>
+                    <a href="https://github.com/kriskowal/q/wiki/jQuery">q with jQuery</a>
+                     <br>
+                     <small>Promise library for JavaScript used with jQuery</small>
+                  </li>
+                  <li>
+                    <a href="https://github.com/briancavalier/when.js">when.js</a>
+                     <br>
+                     <small>Promise library for JavaScript</small>
+                  </li>
+                  <li>
+                    <a href="https://github.com/kriszyp/node-promise">node-promise</a>
+                     <br>
+                     <small>Promise library for JavaScript (node)</small>
+                  </li>
+                  <li>
+                    <a href="https://github.com/coolaj86/futures">futures</a>
+                     <br>
+                     <small>Flow control library with promise functionality</small>
+                  </li>
+                  <li>
+                    <a href="https://github.com/kriszyp/promised-io">promise.io</a>
+                     <br>
+                     <small>Promise library with file i/o</small>
+                  </li>
+                  <li>
+                    <a href="http://api.jquery.com/category/deferred-object/">jQuery (deferred)</a>
+                    <br>
+                    <small>jQuery's documentation for deferreds</small>
+                  </li>
+            </ul>
+           </article>
+
+           <article>
+                <h3>Reading material</h3>
+                <ul>
+                  <li>
+                    <a href="http://addyosmani.com/blog/digging-into-deferreds-1/">Digging into Deferred</a>
+                    <br><small>by Addy Osmani (short video)</small>
+                  </li>
+                  <li>
+                    <a href="http://msdn.microsoft.com/en-us/scriptjunkie/gg723713.aspx">Creating Response Applications using jQuery Promises</a>
+                    <br><small>by Julian Aubourg &amp; Addy Osmani</small>
+                  </li>
+                  <li>
+                    <a href="http://www.ryanmwright.com/2011/09/06/always-keep-your-jquery-promises/">Always use your jQuery promises</a>
+                    <br><small>by Ryan M Wright</small>
+                  </li>
+                  <li>
+                    <a href="http://taraxe.wordpress.com/2011/12/13/jquery-promises/">jQuery promises</a>
+                    <br><small>by Taraxe</small>
+                  </li>
+                  <li>
+                    <a href="http://wiki.commonjs.org/wiki/Promises/A">Promises A</a>
+                    <br><small>The commonjs proposal for promises</small>
+                  </li>
+            </ul>
+           </article>
 
           <article>
             <h1>Thank you.</h1>
