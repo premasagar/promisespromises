@@ -1,4 +1,4 @@
-This repo contains the slides and examples covered in the [AsyncJS talk (9 February, 2012)](http://asyncjs.com/promises/) about JavaScript promises.
+This repo contains the slides and examples covered in the [Async talk (9 February, 2012)](http://asyncjs.com/promises/) about JavaScript promises.
 
 The examples relate closely to the wrappers found in [jQuery.promises](https://github.com/dharmafly/jquery.promises) scripts.
 
